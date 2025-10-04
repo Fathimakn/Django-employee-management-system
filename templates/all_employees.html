@@ -1,0 +1,45 @@
+{% extends 'master.html' %}
+{% block title %}
+    <title>Employees list</title>
+{% endblock %}
+{% block content %}
+    <ul class="nav-bar">
+    <li><a href="{% url 'login' %}">login</a></li>
+    <li><a href="{% url 'logout' %}">logout</a></li>
+
+</ul>
+    <h1>list of employees</h1>
+    <table border="2">
+    <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Department</th>
+        <th>Salary</th>
+        <th>Action</th>
+    </tr>
+    {% for employees in employee %}
+    <tr>
+        <td>{{ employees.id }}</td>
+        <td>{{ employees.name }}</td>
+        <td>{{employees.email}}</td>
+        <td>{{employees.department}}</td>
+        <td>{{ employees.salary }}</td>
+        <td>
+        <a href="{% url 'delete' employees.id %}">DELETE</a>|
+            <a href="{% url 'update' employees.id %}">UPDATE</a>
+        </td>
+
+    </tr>
+    {% endfor %}
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><a href="{% url 'add'  %}">ADD</a></td>
+    </tr>
+
+    </table>
+{% endblock %}
